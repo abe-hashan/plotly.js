@@ -1186,8 +1186,8 @@ lib.isHidden = function(gd) {
  *  @param {object} transform
  *  - targetX: desired position on the x-axis
  *  - targetY: desired position on the y-axis
- *  - textX: width of text
- *  - textY: height of text
+ *  - textX: text half width
+ *  - textY: text half height
  *  - scale: (optional) scale applied after translate
  *  - rotate: (optional) rotation applied after scale
  *  - noCenter: when defined no extra arguments needed in rotation

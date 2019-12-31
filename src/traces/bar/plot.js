@@ -493,12 +493,14 @@ function toMoveInsideBar(x0, x1, y0, y1, textBB, opts) {
     if(isStart || isEnd) {
         textpad += 0.5 * scale * (isHorizontal !== isAutoRotated ? t.x : t.y);
 
+        var anchorSign = (isStart ? -1 : 1);
+
         if(isHorizontal) {
             textpad *= dirSign(x0, x1);
-            targetX = isStart ? x0 + textpad : x1 - textpad;
+            targetX += anchorSign * ((x1 - x0) / 2 - textpad);
         } else {
             textpad *= dirSign(y0, y1);
-            targetY = isStart ? y0 + textpad : y1 - textpad;
+            targetY += anchorSign * ((y1 - y0) / 2 - textpad);
         }
     }
 
@@ -552,11 +554,10 @@ function toMoveOutsideBar(x0, x1, y0, y1, textBB, opts) {
     textpad += 0.5 * scale * (isHorizontal ? t.x : t.y);
     var targetX = (x0 + x1) / 2;
     var targetY = (y0 + y1) / 2;
-
     if(isHorizontal) {
-        targetX = x1 - textpad * dirSign(x1, x0);
+        targetX += (x1 - x0) / 2 - textpad * dirSign(x1, x0);
     } else {
-        targetY = y1 + textpad * dirSign(y0, y1);
+        targetY += (y1 - y0) / 2 + textpad * dirSign(y0, y1);
     }
 
     var textX = (textBB.left + textBB.right) / 2;
